@@ -1,3 +1,3 @@
-# 7 MergeSort
+# 6 - ShellSort
 
-[![7 MergeSort](https://img.youtube.com/vi/gL95C4J5QR4/0.jpg)](https://www.youtube.com/watch?v=gL95C4J5QR4)
+[![ShellSort](https://img.youtube.com/vi/Jw2LEgyL6vw/0.jpg)](https://www.youtube.com/watch?v=Jw2LEgyL6vw)
