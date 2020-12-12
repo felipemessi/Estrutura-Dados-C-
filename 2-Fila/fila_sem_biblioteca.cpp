@@ -33,42 +33,42 @@ public:
 };
 
 // classe Lista
-class Lista
+class Fila
 {
 private:
 	No* cabeca; 
 	No* cauda; 
 
 public:
-	Lista()
+	Fila()
 	{
 		cabeca = NULL;
 		cauda = NULL;
 	}
 
-	Lista(string v)
+	Fila(string v)
 	{
 		cabeca = new No(v);
 		cauda = cabeca;
 	}
 
-	// verifica se a lista est· vazia
+	// verifica se a Fila est√° vazia
 	bool vazia() 
 	{
 		return (cabeca == NULL);
 	}
 	
-	// mostra todos os elementos da lista
+	// mostra todos os elementos da Fila
 	void mostrar() 
 	{
 		cout << "\nImprimindo todos os elementos...\n";
 		No* c = cabeca;
 
 		if(vazia())
-			cout << "A lista NAO possui elementos!!\n";
+			cout << "A Fila NAO possui elementos!!\n";
 		else
 		{
-			while(c) // percorre a lista
+			while(c) // percorre a Fila
 			{
 				cout << c->obterValor() << endl;
 				c = c->obterProx();
@@ -94,16 +94,16 @@ public:
 		}
 	}
 
-	// retorna o tamanho da lista
+	// retorna o tamanho da Fila
 	int tamanho()
 	{
-		if(vazia()) // se for vazia, ent„ retorna 0
+		if(vazia()) // se for vazia, ent√£ retorna 0
 			return 0;
 
 		No* c = cabeca;
 		int tam = 0;
 		
-		// percorre a lista
+		// percorre a Fila
 		do
 		{
 			c = c->obterProx();
@@ -114,7 +114,7 @@ public:
 		return tam;
 	}
 
-	// verifica se um elemento existe na lista
+	// verifica se um elemento existe na Fila
 	bool existe(string v)
 	{
 		No* c = cabeca;
@@ -128,12 +128,12 @@ public:
 		return false;
 	}
 
-	// remove da lista, remoÁ„o do inicio
+	// remove da Fila, remo√ß√£o do inicio
 	void remover()
 	{
 		if(!vazia())
 		{
-			// se houver sÛ 1 elemento
+			// se houver s√≥ 1 elemento
 			if(cabeca->obterProx() == NULL)
 				cabeca = NULL;
 			else if(cabeca->obterProx()->obterProx() == NULL) // 2 elementos
@@ -150,27 +150,27 @@ public:
 
 int main(int argc, char *argv[])
 {
-	// Esta FILA mostra a lista de exercicios
+	// Esta FILA mostra a Fila de exercicios
 	// do final do ano de um aluno de Banco de Dados da FATEC.
 	cout << "----------------------------------\n";
 	cout << "Adicionando a TO DO list de trabalhos: \n";
-	Lista trabalhos_Final_Ano;
+	Fila trabalhos_Final_Ano;
 
 	trabalhos_Final_Ano.inserir("PI");
 	trabalhos_Final_Ano.inserir("Estrutura de Dados");
 	trabalhos_Final_Ano.inserir("Programacao de Banco de Dados");
-	trabalhos_Final_Ano.inserir("Listas Encadeadas");
+	trabalhos_Final_Ano.inserir("Filas Encadeadas");
 	trabalhos_Final_Ano.inserir("Redes");
 	
 	cout << "----------------------------------\n";
 	cout << "TO DO list de trabalhos a fazer: \n";
 	
 	if(trabalhos_Final_Ano.vazia())
-		cout << "Lista vazia?? haha... atÈ parece\n";
+		cout << "Fila vazia?? haha... at√© parece\n";
 		
 	trabalhos_Final_Ano.mostrar();
 	
-	cout << "Como bom aluno j· fiz o primeiro trabalho da lista! \nOlhe minha lista atualizada de trabalhos! \n";
+	cout << "Como bom aluno j√° fiz o primeiro trabalho da Fila! \nOlhe minha Fila atualizada de trabalhos! \n";
 	trabalhos_Final_Ano.remover();
 	
 	trabalhos_Final_Ano.mostrar();
