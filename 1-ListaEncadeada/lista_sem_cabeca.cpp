@@ -43,7 +43,7 @@ public:
 		}
 	}
 
-	// insere depois do nó passado no parâmetro.
+	// insere depois do nÃ³ passado no parÃ¢metro.
 	void inserir(string v, No* no)
 	{
 		if (no->getProx() == NULL){
@@ -72,7 +72,7 @@ public:
 		return false;
 	}
 
-	// remove da lista, remoção do final (semelhante a pop_back da list)
+	// remove da lista
 	void remover(string v)
 	{	
 		No* auxiliar;
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 	// Esta lista encadeada SIMPLES mostra a lista de exercicios
 	// do final do ano de um aluno de Banco de Dados da FATEC.
 	cout << "----------------------------------\n";
-	// Adicionando trabalhos à lista:
+	// Adicionando trabalhos Ã  lista:
 	No* lista = new No("lista encadeada com cabeca");
 	lista->inserir("lista encadeada sem cabeca", lista);
 	lista->inserir("select sort", lista);
