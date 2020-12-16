@@ -1,124 +1,113 @@
+//#include <stdio.h> 
 #include <iostream>
 
-using namespace std;
+using namespace std; 
+ 
+typedef struct No{
+        struct No *prox;
+        int _data;
+}No, *Lista;
+ 
+void iniciar(Lista *novoNo){
+        *novoNo = NULL;
+}
+ 
+int inserir(Lista *no, int data){
+        Lista p = new No();
+        if(p == NULL)   return -1;
+        p->_data = data;
+        p->prox = NULL;
+        if(*no == NULL){
+                *no = p;
+        }else{
+                p->prox = *no;
+                *no = p;
+        }
+        return 0;
+}
+ 
+void imprimir(Lista no){
+        Lista aux = no;
+        if(aux == NULL) return;
+        int count = 0;
+        printf("\n=======IMPRIME LISTA======\n");
+        do{
+                printf("%d\t%d\n", count++, aux->_data);
+                aux = aux->prox;
+        }while(aux);
+        printf("-------FIM IMPRESSAO------\n");
+}
 
-// classe No
-class No
-{
-private:
-	string v;
-	No* prox;
-public:
-	// construtor
-	No(string v) 
-	{
-		this->v = v;
-		this->prox = NULL;
-	}
-
-	string getValor()
-	{
-		return v;
-	}
-
-	No* getProx()
-	{
-		return prox;
-	}
-
-	void setProx(No* p) 
-	{
-		this->prox = p;
-	}
-	
-	// mostra todos os elementos da lista
-	void mostrar() 
-	{
-		int a;
-		No* auxiliar;
-		auxiliar = this;
-		while (auxiliar != NULL){
-			cout << auxiliar->getValor() << "\n";
-			auxiliar = auxiliar->getProx();
+bool buscar(Lista no, int v){
+	Lista aux = no;
+	if(aux == NULL) return false;
+	while (aux->prox != NULL){
+		if (aux->_data == v){
+			return true;
 		}
+		aux = aux->prox;
 	}
-
-	// insere depois do nó passado no parâmetro.
-	void inserir(string v, No* no)
-	{
-		if (no->getProx() == NULL){
-			No* auxiliar = new No(v);
-			no->setProx(auxiliar);
-			auxiliar->prox = NULL;
-		}
-		else {
-			No* auxiliar;
-			auxiliar = new No(v);
-			auxiliar->setProx(no->getProx());
-			no->setProx(auxiliar);
-		}
+	return false;
+}
+ 
+int remover(Lista *no, int data){
+        Lista pre = NULL;
+        Lista aux = *no;
+        if(aux == NULL) return -1;
+        do{
+                if(aux->_data == data){
+                        if(pre == NULL){
+                                *no = aux->prox;
+                        }else{
+                                pre->prox = aux->prox;
+                        }
+                        delete(aux);
+                        cout << "\nvalor " << data << " removido com sucesso!\n";
+                        return 0;
+                }
+                pre = aux;
+                aux = aux->prox;
+        }while(aux);
+        cout << "valor " << data << " - falha ao remover";
+        return -2;
+}
+ 
+Lista lista;
+int main(){
+		cout << "\nInicializando a Lista e Inserindo os primeiros valores ...\n\n";
+		// inicializando a lista
+        iniciar(&lista);
+        // inserindo elementos na lista
+        inserir(&lista, 111);
+        inserir(&lista, 222);
+        inserir(&lista, 333);
+        // imprime lista
+        imprimir(lista);
+        
+        cout << "\nO valor 333 existe na lista?\n";
+        
+        bool existe = buscar(lista, 333);
+ 		if (existe == true){
+ 			cout << "O valor existe na lista!\n";
+		 }
+		 else {
+		 	cout << "O valor NAO existe na lista!\n";
+		 }
 		
-	}
-
-	// verifica se um elemento existe na lista
-	bool existe(string v)
-	{
-		No* auxiliar;
-		for (auxiliar = this; auxiliar != NULL; auxiliar = auxiliar->getProx()){
-			if (auxiliar->getValor() == v){
-				return true;
-			}
-		}	
-		return false;
-	}
-
-	// remove da lista
-	void remover(string v)
-	{	
-		No* auxiliar;
-		No* proximo;
-		auxiliar = this;
-		proximo = this->getProx();
-		while (proximo != NULL and proximo->getValor() != v){
-			auxiliar = proximo;
-			proximo = proximo->getProx();
-		}
-		if (proximo != NULL){
-			auxiliar->setProx(proximo->getProx());
-			delete(proximo);
-		}
-	}
-};
-
-
-
-int main(int argc, char *argv[])
-{
-	// Esta lista encadeada SIMPLES mostra a lista de exercicios
-	// do final do ano de um aluno de Banco de Dados da FATEC.
-	cout << "----------------------------------\n";
-	// Adicionando trabalhos à lista:
-	No* lista = new No("lista encadeada com cabeca");
-	lista->inserir("lista encadeada sem cabeca", lista);
-	lista->inserir("select sort", lista);
-	lista->inserir("shell sort", lista);
-	lista->inserir("insert sort", lista);
-	lista->inserir("quick sort", lista);
-	
-	lista->mostrar();
-	
-	
-	cout << "\n\nO elemento 'lista encadeada com cabeca' pertence a lista?\n";
-	if (lista->existe("lista encadeada com cabeca")){
-		cout << "'lista encadeada com cabeca' esta na lista.\n";
-	}
-	else {
-		cout << "'lista encadeada com cabeca' NAO esta na lista.\n";
-	}
-	
-	lista->remover("lista encadeada sem cabeca");
-	cout << "\n\nFeito a lista encadeada sem cabeca\n\n";
-	
-	return 0;
-
+		// remove o elemento 333 da lista 
+        remover(&lista, 333);
+        // imprime a lista
+        imprimir(lista);
+ 
+ 		cout << "\nO valor 333 existe na lista?\n";
+ 		
+ 		//existe = buscar(lista, 333);
+ 		if (buscar(lista, 333) == true){
+ 			cout << "O valor existe na lista\n";
+		 }
+		 else {
+		 	cout << "O valor NAO existe na lista\n";
+		 }
+		 
+        return 0;
 }
