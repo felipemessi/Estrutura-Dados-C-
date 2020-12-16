@@ -39,13 +39,13 @@ void selectSort() {
 }
 
 int main(){
-	// Selection Sort
-	// O Selection Sorte seleciona o primeiro elemento
+	// Select Sort
+	// O Select Sort seleciona o primeiro elemento
 	// da lista vai comparando com cada elemento da lista.
 	// Caso ele encontre um elemento menor do que o atual,
 	// Ele efetua uma troca de posicao entre os elementos,
 	// E adota este (menor) como elemento de comparacao.
-	// Ele repete o procedimento até o penúltimo item da
+	// Ele repete o procedimento atÃ© o penÃºltimo item da
 	// lista, resultando em uma lista ordenada.
 	cout<<"\nlista Inicial \n";
 	imprimirLista();
