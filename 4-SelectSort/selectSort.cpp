@@ -50,7 +50,7 @@ int main(){
 	cout<<"\nlista Inicial \n";
 	imprimirLista();
     
-    cout<<"\nlista Ordenada por SelectSort \n";
+	cout<<"\nlista Ordenada por SelectSort \n";
 	selectSort();
 	
 	return 0;
