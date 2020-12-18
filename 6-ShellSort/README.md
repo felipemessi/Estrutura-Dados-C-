@@ -1,3 +1,3 @@
 # 6 - ShellSort
 
-[![ShellSort](https://img.youtube.com/vi/Jw2LEgyL6vw/0.jpg)](https://www.youtube.com/watch?v=Jw2LEgyL6vw)
+[![ShellSort](https://img.youtube.com/vi/DwYs4xrv7yc/0.jpg)](https://www.youtube.com/watch?v=DwYs4xrv7yc)
