@@ -6,7 +6,7 @@
 
 ## 10 -  BUSCA
 
-[![10 - Árvore Binária de Busca](https://img.youtube.com/vi/EAF_bXtL-bI/0.jpg)](https://www.youtube.com/watch?v=EAF_bXtL-bI)
+[![10 - Árvore Binária de Busca](https://img.youtube.com/vi/zqqB7fpPMIo/0.jpg)](https://www.youtube.com/watch?v=zqqB7fpPMIo)
 
 ## 11 -  REMOÇÃO
 
