@@ -2,7 +2,7 @@
 
 ## 9 - CRIAÇÃO
 
-[![9 - Árvore Binária de Criação](https://img.youtube.com/vi/w3rzTP-xP2k/0.jpg)](https://www.youtube.com/watch?v=w3rzTP-xP2k)
+[![9 - Árvore Binária de Criação](https://img.youtube.com/vi/gOo4dasegB0/0.jpg)](https://www.youtube.com/watch?v=gOo4dasegB0)
 
 ## 10 -  BUSCA
 
