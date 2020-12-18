@@ -10,5 +10,5 @@
 
 ## 11 -  REMOÇÃO
 
-[![11 - Árvore Binária de Remoção](https://img.youtube.com/vi/X1sus7rOkN8/0.jpg)](https://www.youtube.com/watch?v=X1sus7rOkN8)
+[![11 - Árvore Binária de Remoção](https://img.youtube.com/vi/FgsSU0-FJb0/0.jpg)](https://www.youtube.com/watch?v=FgsSU0-FJb0)
 
