@@ -5,7 +5,7 @@
 using namespace std;
 
 // ------------------------------------
-//       	CLASSE NÓ
+//       	CLASSE NÃ“
 // ------------------------------------
 class No {
 	private:
@@ -65,7 +65,7 @@ class Arvore {
 		}
 	
 	// ------------------------------------
-	//          OUTROS MÉTODOS
+	//          OUTROS MÃ‰TODOS
 	// ------------------------------------
 
 		void imprimir(No* no){
@@ -77,7 +77,7 @@ class Arvore {
 		}	
 		
 	// ------------------------------------
-	//       MÉTODOS DE CRIAÇÃO
+	//       MÃ‰TODOS DE CRIAÃ‡ÃƒO
 	// ------------------------------------
 		
 		void criar(int chave){
@@ -109,7 +109,7 @@ class Arvore {
 		}
 		
 	// ------------------------------------
-	//       MÉTODOS DE BUSCA
+	//       MÃ‰TODOS DE BUSCA
 	// ------------------------------------
 		void buscar(No* no, int valorBuscado) {
 			if (no == NULL){
@@ -128,62 +128,38 @@ class Arvore {
 
 
 	// ------------------------------------
-	//       MÉTODOS DE REMOCAO
+	//       MÃ‰TODOS DE REMOCAO
 	// ------------------------------------	
-		// Retorna ultimo nó da Esquerda
-		No* menorNoDireita(No* noEsquerda){
-			while(noEsquerda->getEsq() != NULL){
-				noEsquerda= noEsquerda->getEsq();
-			}
-			cout << "NoEsquerdaRetorno: " << noEsquerda->getChave() << "\n";
-			return noEsquerda;
-		}
-		
-		No* remover(No* raiz, int valorRemover){
+
+		No* remover(No* raiz){	
 			if (raiz != NULL){
-				// Valor > Raiz -> Percorre a arvore pela direita.
-				if(valorRemover > raiz->getChave()){
-					raiz->setDir(remover(raiz->getDir(), valorRemover));
+				// Se a raiz possui ramos/folhas apenas Ã  direita
+				if (raiz->getEsq() == NULL and raiz->getDir() != NULL){
+					No* aux = raiz->getDir();
+					free(raiz);	
+					return aux;
+				}					
+				// Se a raiz possui ramos/folhas dos dois lados ou apenas Ã  esquerda
+				else {
+					// Para substituir a raiz a gente pode usar o menor nÃ³
+					// Ã  direita ou o maior Ã  esquerda. Usaremos o maior nÃ³ Ã  esquerda.
+					No* aux = raiz;
+					No* auxProx = raiz->getEsq();
+					// Captura o nÃ³ mais a direita a partir do primeiro nÃ³ Ã  esquerda da raiz.
+					while(auxProx->getDir() != NULL) {
+						aux = auxProx;
+						auxProx = auxProx->getDir();
+					}
+					// Se o auxiliar for diferente da raiz, ele atualiza o valor do auxProx.
+					if ( aux != raiz) {
+						aux->setDir(auxProx->getEsq());
+						auxProx->setEsq(raiz->getEsq());
+					}
+					// atualiza a Ã¡rvore sendo auxProx a nova raiz da Ã¡rvore.
+					auxProx->setDir(raiz->getDir());
+					free(raiz);
+					return auxProx;
 				}
-				// Valor < Raiz -> Percorre a arvore pela esquerda.
-				else if (valorRemover < raiz->getChave()){
-					raiz->setEsq(remover(raiz->getEsq(), valorRemover));
-				}
-				// Valor que eu quero remover está na raiz.
-				else{
-					// Se a raiz não possui ramos/folhas nem a direita e nem a esquerda.
-					if (raiz->getEsq() == NULL and raiz->getDir() == NULL){
-						free(raiz);
-						return NULL;
-					}
-					// Se a raiz possui ramos/folhas apenas à direita
-					else if (raiz->getEsq() == NULL and raiz->getDir() != NULL){
-						No* aux = raiz->getDir();
-						free(raiz);	
-						return aux;
-					}
-					// Se a raiz possui ramos/folhas apenas à esquerda
-					else if (raiz->getEsq() != NULL and raiz->getDir() == NULL){
-						No* aux = raiz->getEsq();
-						free(raiz);
-						return aux;	
-					}
-					// Se a raiz possui ramos/folhas dos dois lados.
-					else {
-						// Para substituir a raiz a gente pode usar o menor nó
-						// à direita ou o maior à esquerda. Usaremos o método 
-						// menorNoDireita para pegar o menor nó da direita
-						No* aux = menorNoDireita(raiz->getDir());
-						// Salvo o valor que está no nó.
-						int valor = aux->getChave();
-						// Removo o nó.
-						raiz = remover(raiz, aux->getChave());
-						// atribuo o valor que estava contido no nó na raiz.
-						raiz->setChave(valor);
-						return raiz;
-					}
-				}
-				return raiz;
 			}
 			 return NULL;
 		}			
@@ -218,8 +194,9 @@ int main(int argc, char *argv[])
 	*/
 
 	cout << "\n\nRemovendo o valor 10 na arvore:\n";	
-	arv.setRaiz(arv.remover(arv.getRaiz(), 10));
-	
+	arv.setRaiz(arv.remover(arv.getRaiz()));
+	cout << "Nova Raiz: "<< arv.getRaiz()->getChave() << " ";
+
 	cout << "\n\nPercorrendo em ordem o novo vetor...\n";
 	arv.imprimir(arv.getRaiz());
 
