@@ -1,5 +1,7 @@
 //#include <stdio.h> 
 #include <iostream>
+#include <cstdlib>
+#include<windows.h>
 
 using namespace std; 
  
@@ -50,26 +52,10 @@ bool buscar(Lista no, int v){
 	return false;
 }
  
-int remover(Lista *no, int data){
-        Lista pre = NULL;
-        Lista aux = *no;
-        if(aux == NULL) return -1;
-        do{
-                if(aux->_data == data){
-                        if(pre == NULL){
-                                *no = aux->prox;
-                        }else{
-                                pre->prox = aux->prox;
-                        }
-                        delete(aux);
-                        cout << "\nvalor " << data << " removido com sucesso!\n";
-                        return 0;
-                }
-                pre = aux;
-                aux = aux->prox;
-        }while(aux);
-        cout << "valor " << data << " - falha ao remover";
-        return -2;
+void removeProximo(No *no){
+    No *aux = no->prox;
+   	no->prox = aux->prox;
+	free(aux);	
 }
  
 Lista lista;
@@ -94,15 +80,15 @@ int main(){
 		 	cout << "O valor NAO existe na lista!\n";
 		 }
 		
-		// remove o elemento 333 da lista 
-        remover(&lista, 333);
+		// remove o elemento 222 da lista 
+        removeProximo(lista);
         // imprime a lista
         imprimir(lista);
  
- 		cout << "\nO valor 333 existe na lista?\n";
+ 		cout << "\nO valor 222 existe na lista?\n";
  		
  		//existe = buscar(lista, 333);
- 		if (buscar(lista, 333) == true){
+ 		if (buscar(lista, 222) == true){
  			cout << "O valor existe na lista\n";
 		 }
 		 else {
